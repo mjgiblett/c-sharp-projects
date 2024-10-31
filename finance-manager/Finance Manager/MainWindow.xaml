@@ -1,0 +1,308 @@
+﻿<Window x:Class="Finance_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Finance_Manager"
+        xmlns:syncfusion="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF"
+        mc:Ignorable="d"
+        Title="Finance Manager" SizeToContent="WidthAndHeight"  MinHeight="400" MinWidth="1000" 
+        WindowStartupLocation="CenterScreen" Icon="/Pictures/send-money.png">
+    <TabControl Name="TabController" TabStripPlacement="Top">
+        <TabItem Name="TabOverview" Header="Overview">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Width="1000" Height="50" Orientation="Horizontal">
+                    <Label Content="Overview" Width="1000" HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" FontSize="25" Foreground="#FF4433" FontWeight="Bold"></Label>
+                </StackPanel>
+                <Border Grid.Row="1" Width="900" CornerRadius="10" BorderThickness="5" >
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#FF4433" Offset="0.0" />
+                            <GradientStop Color="#FF5F1F" Offset="0.50" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Rectangle Grid.Row="1" >
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <StackPanel Grid.Row="1" Width="900" Height="40" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+                    <Label Height="40" Width="180" Content="Account" Margin="30 0 0 0" VerticalAlignment="Bottom" 
+                        Foreground="White" FontSize="20"></Label>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Width="900" Height="60" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+                    <ComboBox Name="comboBoxChartAccount" 
+                        Width="200" Height="30" Margin="30 0" 
+                        MaxDropDownHeight="150" FontSize="18" 
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"
+                        SelectionChanged="ChangeOverviewChart"/>
+                    <CheckBox Name ="checkBoxBalance" Content="Balance"
+                        Width="100" Height="30" FontSize="20" Foreground="Blue"
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"
+                        IsChecked="True" Click="ChangeOverviewChart" />
+                    <CheckBox Name ="checkBoxCredit" Content="Credit"
+                        Width="100" Height="30" FontSize="20" Foreground="Green"
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"
+                        IsChecked="True" Click="ChangeOverviewChart" />
+                    <CheckBox Name ="checkBoxDebit" Content="Debit"
+                        Width="100" Height="30" FontSize="20" Foreground="Red"
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"
+                        IsChecked="True" Click="ChangeOverviewChart" />
+                    <Button Name="buttonTransactionManager" Content="Transaction Manager" Click="buttonTransactionManager_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Width ="1000" Height="600">
+                    <syncfusion:SfChart Header="Balance" Name="chart" Height="600">
+                        <syncfusion:SfChart.PrimaryAxis>
+                            <syncfusion:DateTimeAxis Header="Date" LabelFormat="MMM-yy"/>
+                        </syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:SfChart.SecondaryAxis>
+                            <syncfusion:NumericalAxis Header="Value (AUD)" />
+                        </syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:SfChart.Legend>
+                            <syncfusion:ChartLegend></syncfusion:ChartLegend>
+                        </syncfusion:SfChart.Legend>
+                    </syncfusion:SfChart>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="TabTransactionManager" Header="Transaction Manager">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Width="1000" Height="50" Orientation="Horizontal">
+                    <Label Content="Transaction Manager" Width="1000" HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" FontSize="25" Foreground="#FF4433" FontWeight="Bold"></Label>
+                </StackPanel>
+                <Border Grid.Row="1" Width="900" CornerRadius="10" BorderThickness="5" Margin="50 0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#FF4433" Offset="0.0" />
+                            <GradientStop Color="#FF5F1F" Offset="0.50" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Rectangle Grid.Row="1" >
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <StackPanel Grid.Row="1" Width="900" Height="40" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+                    <Label Height="40" Width="180" Content="Account" Margin="30 0 0 0" VerticalAlignment="Bottom" 
+                        Foreground="White" FontSize="20"></Label>
+                    <Label Height="40" Width="180" Content="Date" Margin="35 0 0 0" VerticalAlignment="Bottom" 
+                        Foreground="White" FontSize="20"></Label>
+                    <Label Height="40" Width="180" Content="Amount" Margin="35 0 0 0" VerticalAlignment="Bottom" 
+                        Foreground="White" FontSize="20"></Label>
+                    <Label Height="40" Width="180" Content="Description" Margin="35 0 0 0" VerticalAlignment="Bottom" 
+                        Foreground="White" FontSize="20"></Label>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Width="900" Height="60" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+                    <ComboBox Name="comboBoxAccount" 
+                        Width="200" Height="30" Margin="30 0 0 0" 
+                        MaxDropDownHeight="150" FontSize="18" 
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"></ComboBox>
+                    <DatePicker Name="datePicker" 
+                        Width="200" Height="30" Margin="15 0 0 0" FontSize="18"
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"></DatePicker>
+                    <TextBox Name="txtAmount" 
+                        Width="200" Height="30" Margin="15 0 0 0" 
+                        PreviewTextInput="DecimalValidationTextBox" FontSize="18" 
+                        VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                    <TextBox Name="txtDescription" 
+                        Width="200" Height="30" Margin="15 0 0 0" 
+                        FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Width="1000" Height="60" Orientation="Horizontal">
+                    <Button Name="Import" Content="Import" Height="40" Width="150" Click="Import_Click"  Margin="140 0 0 0"
+                    Foreground="White" FontSize="20" Style="{StaticResource ButtonRound}">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="Save" Content="Save" Height="40" Width="150" Click="Save_Click"
+                    Margin="40 0 0 0" Foreground="White" FontSize="20" 
+                    Style="{StaticResource ButtonRound}">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="Cancel" Content="Cancel" Height="40" Width="150" Click="Cancel_Click"
+                    Margin="40 0 0 0" Foreground="White" FontSize="20" Style="{StaticResource ButtonRound}">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="DeleteAll" Content="Delete All" Height="40" Width="150" Click="DeleteAll_Click"
+                    Margin="40 0 0 0" Foreground="White" FontSize="20" Style="{StaticResource ButtonRound}">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Height="200" Width="800" Margin="100 0" VerticalAlignment="Top">
+                    <DataGrid Name="dataGridTransaction" 
+                              AutoGenerateColumns="False" 
+                              Height="180" Width="700" Margin="10" 
+                              Background="Transparent" 
+                              CanUserAddRows="False" 
+                              SelectionUnit="Cell" 
+                              VerticalScrollBarVisibility="Auto" 
+                              SelectedCellsChanged="DataGridTransaction_SelectedCellsChanged">
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="" Width="50" IsReadOnly="True" DisplayIndex="0">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="/Pictures/x-button.png" ToolTip="Delete" Width="20" Height="20"
+                                               x:Name="dataGridTransaction_Delete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="" Width="50" IsReadOnly="True" DisplayIndex="1">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="/Pictures/pencil.png" ToolTip="Edit" Width="20" Height="20"
+                                               x:Name="dataGridTransaction_Revise"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn x:Name="dataGridTransaction_TransactionID" Header="ID" Width="50" CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=TransactionID}" IsReadOnly="True" 
+                                                Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="dataGridTransaction_AccountID" Header="Account ID" Width="70" CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=AccountID}" IsReadOnly="True"
+                                                Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="dataGridTransaction_AccountName" Header="Account" Width="125" CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=AccountName}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridTransaction_Date" Header="Date" Width="80"  CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=DateString}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridTransaction_Amount" Header="Amount" Width="80" CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=Amount}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridTransaction_Description" Header="Description" Width="*" CanUserResize="True"
+                                                CanUserReorder="False" Binding="{Binding Path=Description}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Width="800" Height="100" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="TabAccountManager" Header="Account Manager">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Width="1000" Height="50" Orientation="Horizontal">
+                    <Label Content="Account Manager" Width="1000" HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" FontSize="25" Foreground="#FF4433" FontWeight="Bold"></Label>
+                </StackPanel>
+                <Border Grid.Row="1" Width="900" CornerRadius="10" BorderThickness="5" Margin="50 0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#FF4433" Offset="0.0" />
+                            <GradientStop Color="#FF5F1F" Offset="0.50" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Rectangle Grid.Row="1" >
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF4433" Offset="0.0" />
+                                <GradientStop Color="#FF5F1F" Offset="0.50" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <StackPanel Grid.Row="1" Width="900" Height="40" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+                    <Label Height="40" Width="180" Content="Date" Margin="30 0 0 0" VerticalAlignment="Bottom" 
+                   Foreground="White" FontSize="20"></Label>
+                    <Label Height="40" Width="180" Content="Account" Margin="35 0 0 0" VerticalAlignment="Bottom" 
+                   Foreground="White" FontSize="20"></Label>
+                    <Label Height="40" Width="180" Content="Description" Margin="35 0 0 0" VerticalAlignment="Bottom" 
+                   Foreground="White" FontSize="20"></Label>
+                    <Label Height="40" Width="180" Content="Amount" Margin="35 0 0 0" VerticalAlignment="Bottom" 
+                   Foreground="White" FontSize="20"></Label>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Width="900" Height="60" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+                    <DatePicker Name="d" Width="200" Height="30" Margin="30 0 0 0" FontSize="18"
+                     VerticalContentAlignment="Center" VerticalAlignment="Top"></DatePicker>
+                    <ComboBox Name="c" Width="200" Height="30" Margin="15 0 0 0" 
+                     MaxDropDownHeight="150" FontSize="18" 
+                     VerticalContentAlignment="Center" VerticalAlignment="Top"></ComboBox>
+                    <TextBox Name="b" Width="200" Height="30" Margin="15 0 0 0" 
+                     FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                    <TextBox Name="a" Width="200" Height="30" Margin="15 0 0 0" 
+                     PreviewTextInput="DecimalValidationTextBox" FontSize="18" 
+                     VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Height="200" Width="800" Margin="100 0" VerticalAlignment="Top">
+                    <DataGrid Name="dataGridAccount" 
+                              AutoGenerateColumns="False" 
+                              Height="180" Width="700" Margin="10" 
+                              Background="Transparent" 
+                              CanUserAddRows="False" 
+                              SelectionUnit="Cell" 
+                              VerticalScrollBarVisibility="Auto" >
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="dataGridAccount_AccountID" Header="ID" Width="50" CanUserResize="False"
+                                                Binding="{Binding Path=AccountID}" />
+                            <DataGridTextColumn x:Name="dataGridAccount_Account" Header="Account" Width="80"  CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=AccountNumber}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridAccount_BSB" Header="BSB" Width="80"  CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=BSB}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridAccount_Name" Header="Name" Width="80"  CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=Name}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridAccount_Bank" Header="Bank" Width="100" CanUserResize="True"
+                                                CanUserReorder="False" Binding="{Binding Path=Bank}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="dataGridAccount_Type" Header="Type" Width="80" CanUserResize="False"
+                                                CanUserReorder="False" Binding="{Binding Path=AccountType}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
